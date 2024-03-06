@@ -34,6 +34,8 @@ public interface BulkTokenFactory extends TokenFactory {
       return new Murmur3BulkTokenFactory();
     } else if (partitioner.equals(RandomTokenFactory.PARTITIONER_NAME)) {
       return new RandomBulkTokenFactory();
+    } else if (partitioner.equals("com.amazonaws.cassandra.DefaultPartitioner")) {
+      return new RandomBulkTokenFactory();
     } else {
       throw new IllegalArgumentException("Unknown partitioner: " + partitioner);
     }
